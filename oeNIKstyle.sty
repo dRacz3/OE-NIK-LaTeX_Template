@@ -1,0 +1,65 @@
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\linespread{1.3} % másfeles sörköz
+\usepackage[magyar]{babel} % magyarra fordítja a dolgokat
+\usepackage{listings} % code snippethez
+\usepackage[left=2.50cm, right=2.50cm, top=4.00cm, bottom=2.50cm]{geometry} % Margó setup
+
+\ProvidesPackage{oeNIKstyle}[2017/10/27 v.01 OE-NIK Latex Template by Rácz Dániel]
+\RequirePackage{graphicx}
+
+% Command definitions and default values
+\newcommand*{\project}[1]{\gdef\@project{#1}}
+\newcommand*{\@project}{Final Year Project}
+
+\newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}
+\newcommand*{\@supervisor}{\texttt{\string\supervisor} .}
+
+\newcommand*{\courseName}[1]{\gdef\@courseName{#1}}
+\newcommand*{\@courseName}[1]{}
+
+\newcommand*{\documentumTypeName}[1]{\gdef\@documentumTypeName{#1}}
+\newcommand*{\@documentumTypeName}[1]{\texttt{ }}
+
+\newcommand*{\neptunCode}[1]{\gdef\@neptunCode{#1}}
+\newcommand*{\@neptunCode}[1]{ }
+
+%Redefinition of the maketitle command with custom stlye 
+\renewcommand*{\maketitle}{%
+	\begin{titlepage}
+		\centering % Sets the whole scope to be centering
+		{
+			\begin{figure}[h!] % Header part with the figure
+				\raggedright
+				\hfill 			
+				{\scshape\LARGE Óbudai Egyetem \par}
+				\includegraphics[width=0.1\linewidth]{header/cimer}
+				\par
+				\Large Neumann János\par
+				\Large Informatikai Kar
+			\end{figure}
+			% Just a line to look face
+			\noindent\makebox[\linewidth]{\rule{18cm}{0.8pt}}
+			\vspace{2cm}
+			{\huge\bfseries\@title\unskip\strut\par} 
+			\vspace{2cm}
+			{\scshape\LARGE\@courseName\strut\par}
+			\vspace{1cm}
+			{\scshape\Large\@documentumTypeName\strut\par}
+			\vspace{1.5cm}	
+			\vfill
+		}
+		%Part that contains the details of the actual student
+		\raggedright
+		{
+			\Large\textbf{OE NIK} \hspace{1.0cm}
+			 Hallgató neve: \hfill
+			\Large\textbf\itshape\@author\unskip\strut\par
+			{\bfseries \the\year} \hfill \Large\textbf\itshape\@neptunCode\unskip\strut
+		}
+	\end{titlepage}
+}
+\endinput
