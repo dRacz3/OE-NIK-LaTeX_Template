@@ -1,0 +1,208 @@
+%% Package info
+\ProvidesPackage{oeNIKstyle}[2019/01/04 v.03 OE-NIK Latex Template by Rácz Dániel]
+\RequirePackage{graphicx}
+
+
+
+\usepackage{float}
+\usepackage{array}
+\usepackage{t1enc}
+\usepackage[utf8]{inputenc}
+\usepackage[hyphens]{url}
+\usepackage[unicode=true]{hyperref}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{subcaption} % todo which one should be used??
+%\usepackage{subfig} %
+\usepackage{newcent}
+\usepackage[Bjornstrup]{fncychap}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{ifpdf}
+\usepackage{hyphenat}
+\ifpdf %if using pdfLaTeX in PDF mode
+\usepackage{pgf}
+\usepackage{tikz}
+\else %if using LaTeX or pdfLaTeX in DVI mode
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.eps,.bmp}
+\DeclareGraphicsRule{.emf}{bmp}{}{}% declare EMF filename extension
+\DeclareGraphicsRule{.png}{bmp}{}{}% declare PNG filename extension
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{pstricks}
+\fi
+
+\usepackage{epic,bez123}
+\usepackage{floatflt}% package for floatingfigure environment
+\usepackage{wrapfig}% package for wrapfigure environment
+\usepackage{makeidx}
+
+\usepackage{pdfpages}
+\usepackage{caption}
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+\usepackage{amsfonts}
+\linespread{1.3} % másfeles sörköz
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% írd át british-re ha angolul írsz! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[magyar]{babel} % magyarra fordítja a dolgokat
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[left=2.50cm, right=2.50cm, top=2.50cm, bottom=4.00cm]{geometry} % Margó setup
+
+% Times New Romanra varázsolja a betűket ha kikommentezed
+%\usepackage{times}
+
+
+%% Advanced toolok %%
+\makeindex
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{listings}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage[T1]{fontenc}
+\else % if luatex or xelatex
+\ifxetex
+\usepackage{mathspec}
+\else
+\usepackage{fontspec}
+\fi
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+    \usepackage[]{microtype}
+    \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
+\hypersetup{pdftitle={irob-saf},pdfborder={0 0 0},breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{grffile}
+
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+
+\makeatletter
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+    language=C++,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=none,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=3
+}
+
+% Command definitions and default values 
+
+\newcommand{\makepreamble}{
+\maketitle
+\tableofcontents
+\clearpage
+\addcontentsline{toc}{section}{List of Figures}
+\listoffigures
+\newpage
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyhead[LO]{\thepage}
+\setcounter{footnote}{0}
+}
+
+
+%% Variables
+
+
+\newcommand*{\project}[1]{\gdef\@project{#1}}
+\newcommand*{\@project}{Final Year Project}
+
+\newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}
+\newcommand*{\@supervisor}{\texttt{\string\supervisor} .}
+
+\newcommand*{\courseName}[1]{\gdef\@courseName{#1}}
+\newcommand*{\@courseName}[1]{}
+
+\newcommand*{\documentumTypeName}[1]{\gdef\@documentumTypeName{#1}}
+\newcommand*{\@documentumTypeName}[1]{\texttt{ }}
+
+\newcommand*{\torzsKonyvSzam}[1]{\gdef\@torzsKonyvSzam{#1}}
+\newcommand*{\@torzsKonyvSzam}[1]{ }
+
+
+
+%Redefinition of the maketitle command with custom stlye 
+\renewcommand*{\maketitle}{%
+	\begin{titlepage}
+		\centering % Sets the whole scope to be centering
+		{
+			%Header picture placement
+			\begin{minipage}{0.48\textwidth} \begin{flushleft}
+				\includegraphics[scale = 1]{header/cimer}
+				\end{flushleft}\end{minipage}
+				\begin{minipage}{0.48\textwidth} \begin{flushright}
+				\includegraphics[scale = 1]{header/neuman}
+				\end{flushright}\end{minipage}
+																								%%% Set the "cursor" a big higher, so text can be inserted between the two pictures
+			\vspace*{-2.5cm}	
+			
+			\textsc{\Large \textbf{Neumann János}\\ \vspace{5px} \textbf{Informatikai kar} }\\	
+	
+				\vspace{8cm}
+			\resizebox{0.85\linewidth}{!}{\bfseries DIPLOMAMUNKA}
+
+			\vfill
+		}
+		%Part that contains the details of the actual student
+		\raggedright
+		{
+			\textbf{OE-NIK} \hspace{1.0cm}
+			 \normalsize{Hallgató neve:} \hfill
+			\textbf\itshape\textbf{\@author}\unskip\strut\par
+			
+			{\bfseries \the\year}\hspace{1.9cm}
+			\normalsize{Hallgató törzskönyvi száma:}
+			\hfill \textbf\itshape\textbf{\@torzsKonyvSzam}\unskip\strut
+		}
+	\end{titlepage}
+}
+
+% % Specific command, environment definitions and package loads
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\inv}{inv}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\ad}{ad}
+
+%just for dummy texts
+\usepackage{lipsum}
+
+
+\endinput

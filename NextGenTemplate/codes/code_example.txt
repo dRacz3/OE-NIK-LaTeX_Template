@@ -1,0 +1,8 @@
+something
+{
+
+	void myfunction(void) {
+
+	}
+
+}
